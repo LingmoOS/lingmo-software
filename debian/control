@@ -1,0 +1,151 @@
+Source: lingmo-software
+Section: lingmo
+Priority: optional
+Maintainer: Lingmo OS Team <team@lingmo.org>
+Build-Depends: debhelper-compat (= 13),
+               appstream,
+               dh-sequence-gnome,
+               docbook-xsl,
+               gsettings-desktop-schemas-dev,
+               gtk-doc-tools,
+               libadwaita-1-dev,
+               libappstream-dev,
+               libflatpak-dev [amd64 arm64 armel armhf i386 mipsel mips64el ppc64el s390x hppa powerpc ppc64 riscv64 x32],
+               libfwupd-dev [linux-any],
+               libglib2.0-dev,
+               libglib-testing-0-dev,
+               libgtk-4-dev,
+               libgudev-1.0-dev [linux-any],
+               libjson-glib-dev,
+               libostree-dev [linux-any],
+               libmalcontent-0-dev [amd64 arm64 armel armhf i386 mipsel mips64el ppc64el s390x hppa powerpc ppc64 riscv64 x32],
+               libpackagekit-glib2-dev,
+               libpolkit-gobject-1-dev,
+               libsnapd-glib-dev [amd64 arm64 armel armhf i386 ppc64el s390x],
+               libsoup-3.0-dev,
+               libxml2-utils,
+               libxmlb-dev,
+               meson,
+               pkg-config,
+               polkitd,
+               xsltproc
+Build-Depends-Indep: libgdk-pixbuf2.0-doc <!nodoc>,
+                     libglib2.0-doc <!nodoc>,
+                     libgtk-3-doc <!nodoc>,
+                     libjson-glib-doc <!nodoc>,
+                     libsoup2.4-doc <!nodoc>,
+                     libsoup-3.0-doc <!nodoc>
+Rules-Requires-Root: no
+Standards-Version: 4.6.2
+Vcs-Browser: https://salsa.debian.org/lingmo-team/lingmo-software
+Vcs-Git: https://salsa.debian.org/lingmo-team/lingmo-software.git
+Homepage: https://wiki.lingmo.org/Apps/Software
+X-Ubuntu-Use-Langpack: yes
+
+Package: lingmo-software
+Architecture: any
+Depends: appstream,
+         apt-config-icons,
+         lingmo-software-common (= ${source:Version}),
+         gsettings-desktop-schemas,
+         libgtk3-perl,
+         packagekit,
+         software-properties-gtk,
+         ${misc:Depends},
+         ${shlibs:Depends}
+Conflicts: sessioninstaller
+Recommends: fwupd [linux-any], ${plugin:Recommends}
+Suggests: apt-config-icons-hidpi,
+          lingmo-software-plugin-flatpak [amd64 arm64 armel armhf i386 mipsel mips64el ppc64el s390x hppa powerpc ppc64 riscv64 x32],
+          ${plugin:Suggests}
+Description: Software Center for Lingmo
+ Software lets you install and update applications and system extensions.
+ .
+ Software uses a plugin architecture to separate the frontend from the
+ technologies that are used underneath. Currently, a PackageKit plugin provides
+ data from a number of traditional packaging systems, such as rpm or apt. An
+ appdata plugin provides additional metadata from locally installed data in the
+ appdata format.
+
+Package: lingmo-software-common
+Architecture: all
+Multi-Arch: foreign
+Depends: ${misc:Depends}
+Description: Software Center for Lingmo (common files)
+ Software lets you install and update applications and system extensions.
+ .
+ Software uses a plugin architecture to separate the frontend from the
+ technologies that are used underneath. Currently, a PackageKit plugin provides
+ data from a number of traditional packaging systems, such as rpm or apt. An
+ appdata plugin provides additional metadata from locally installed data in the
+ appdata format.
+ .
+ This package contains the architecture-independent files.
+
+Package: lingmo-software-plugin-flatpak
+Architecture: amd64 arm64 armel armhf i386 mipsel mips64el ppc64el s390x hppa powerpc ppc64 riscv64 x32
+Depends: flatpak,
+         lingmo-software (= ${binary:Version}),
+         ${misc:Depends},
+         ${shlibs:Depends}
+Description: Flatpak support for Lingmo Software
+ Software lets you install and update applications and system extensions.
+ .
+ Software uses a plugin architecture to separate the frontend from the
+ technologies that are used underneath. Currently, a PackageKit plugin provides
+ data from a number of traditional packaging systems, such as rpm or apt. An
+ appdata plugin provides additional metadata from locally installed data in the
+ appdata format.
+ .
+ This package contains the Flatpak plugin.
+
+Package: lingmo-software-plugin-snap
+Architecture: amd64 arm64 armel armhf i386 ppc64el s390x
+Depends: lingmo-software (= ${binary:Version}),
+         snapd [amd64 arm64 armel armhf i386 ppc64el],
+         ${misc:Depends},
+         ${shlibs:Depends}
+Recommends: snapd [s390x]
+Breaks: lingmo-software
+Replaces: lingmo-software
+Description: Snap support for Lingmo Software
+ Software lets you install and update applications and system extensions.
+ .
+ Software uses a plugin architecture to separate the frontend from the
+ technologies that are used underneath. Currently, a PackageKit plugin provides
+ data from a number of traditional packaging systems, such as rpm or apt. An
+ appdata plugin provides additional metadata from locally installed data in the
+ appdata format.
+ .
+ This package contains the Snap plugin.
+
+Package: lingmo-software-dev
+Section: libdevel
+Architecture: any
+Multi-Arch: same
+Depends: libappstream-dev,
+         libglib2.0-dev,
+         libgtk-4-dev,
+         libjson-glib-dev,
+         libpolkit-gobject-1-dev,
+         libsoup-3.0-dev,
+         libxmlb-dev,
+         ${misc:Depends}
+Suggests: lingmo-software-doc
+Description: Software Center for Lingmo - development files
+ Software lets you install and update applications and system extensions.
+ .
+ This package contains headers and other files required when compiling external
+ plugins for use with Software.
+
+Package: lingmo-software-doc
+Section: doc
+Architecture: all
+Multi-Arch: foreign
+Depends: ${misc:Depends}
+Build-Profiles: <!nodoc>
+Description: Software Center for Lingmo - documentation
+ Software lets you install and update applications and system extensions.
+ .
+ This package contains documentation for use when developing plugins for
+ Software.

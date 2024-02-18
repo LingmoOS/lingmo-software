@@ -1,0 +1,7 @@
+[Desktop Entry]
+Type=Application
+Name=Lingmo Software
+Exec=@bindir@/lingmo-software --gapplication-service
+OnlyShowIn=Lingmo;Unity;
+NotShowIn=Budgie
+NoDisplay=true

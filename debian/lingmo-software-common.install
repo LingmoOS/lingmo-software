@@ -1,0 +1,5 @@
+debian/source_lingmo-software.py /usr/share/apport/package-hooks
+usr/share/swcatalog/xml
+#usr/share/lingmo-software/
+usr/share/icons/
+usr/share/locale/

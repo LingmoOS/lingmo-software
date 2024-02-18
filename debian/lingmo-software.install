@@ -1,0 +1,13 @@
+etc/xdg/autostart/
+usr/bin/lingmo-software
+usr/lib/*/lingmo-software/liblingmosoftware.so*
+usr/lib/*/lingmo-software/plugins-*/*.so
+usr/libexec/lingmo-software-cmd
+usr/libexec/lingmo-software-restarter
+usr/share/applications/
+usr/share/dbus-1/
+usr/share/doc/
+usr/share/glib-2.0/schemas/
+usr/share/lingmo-shell/
+usr/share/man/
+usr/share/metainfo/
